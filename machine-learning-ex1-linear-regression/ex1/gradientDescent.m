@@ -15,18 +15,15 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-	if iter != 1
-		for j=1:m
-			hypothesis = 0;
-			for i=1:length(theta)
-				hypothesis = hypothesis+theta(i)*X(j,i)
-			end
-			innerCost = hypothesis - y(j);
-		end
-		cost = alpha*2*(1/m)*innerCost;
+	costDeriv = 0;	
+	for j=1:m
 		for i=1:length(theta)
-			theta(i) = theta(i) - cost;
+			costDeriv = costDeriv + (theta(i)*X(j,i)-y(j))*X(j,i);
 		end
+	end
+	gradientStep = alpha*2*(1/m)*costDeriv;
+	for i=1:length(theta)
+		theta(i) = theta(i) - gradientStep;
 	end
 
     % ============================================================
