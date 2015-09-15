@@ -17,11 +17,13 @@ for iter = 1:num_iters
     %
 	if iter != 1
 		for j=1:m
+			hypothesis = 0;
 			for i=1:length(theta)
-			    J = J + theta(i)*X(j,i);
+				hypothesis = hypothesis+theta(i)*X(j,i)
 			end
+			innerCost = hypothesis - y(j);
 		end
-		cost = alpha*2*(1/m)*J;
+		cost = alpha*2*(1/m)*innerCost;
 		for i=1:length(theta)
 			theta(i) = theta(i) - cost;
 		end
