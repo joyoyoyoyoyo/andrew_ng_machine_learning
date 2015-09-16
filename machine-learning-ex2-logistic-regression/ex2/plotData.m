@@ -10,13 +10,15 @@ figure; hold on;
 % Instructions: Plot the positive and negative examples on a
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
-for i=1:length(y)
-	if y(i) == 1
-		plot(X(i,1),X(i,2),'k+');
-	elseif
-		plot(X(i,1),X(i,2),'ko');
-	end
-end
+
+% Find indices for positive and negative values of y
+pos = find(y==1);
+neg = find(y==0);
+
+% Plot results
+plot(X(pos,1),X(pos,2),'k+','MarkerEdgeColor','g','LineWidth',2,'MarkerSize',7);
+plot(X(neg,1),X(neg,2),'ko','MarkerFaceColor','r','MarkerSize',7);
+
 % =========================================================================
 
 
