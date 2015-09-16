@@ -10,16 +10,13 @@ figure; hold on;
 % Instructions: Plot the positive and negative examples on a
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
-%
-
-
-
-
-
-
-
-
-
+for i=1:length(y)
+	if y(i) == 1
+		plot(X(i,1),X(i,2),'k+');
+	elseif
+		plot(X(i,1),X(i,2),'ko');
+	end
+end
 % =========================================================================
 
 
