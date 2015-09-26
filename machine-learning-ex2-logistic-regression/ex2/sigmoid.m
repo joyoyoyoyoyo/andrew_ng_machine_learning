@@ -11,8 +11,7 @@ g = zeros(size(z));
 
 % hypthosis - h_theta(x) = g(theta'*x)
 g = 1/(1+e^(-z));
-
-
+% g needs to operate with vectors, scalars, or matrices
 
 % =============================================================
 
