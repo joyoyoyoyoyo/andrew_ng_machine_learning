@@ -23,6 +23,11 @@ for i=1:m
 	
 	hypothesis = sigmoid(X(i,:)*theta);
 	J = J + y(i)*log(hypothesis)+(1-y(i))*log(1-hypothesis);
+	if i == m
+		for j=1:length(theta)
+			grad(i) = grad(i) - alpha*J*X(i,j);
+		end
+	end
 end
 
 
