@@ -19,20 +19,18 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
-for i=1:m
-	
+for i=1:m	
 	hypothesis = sigmoid(X(i,:)*theta);
 	J = J + y(i)*log(hypothesis)+(1-y(i))*log(1-hypothesis);
-	if i == m
-		J = (1/m)*J;
-		for j=1:length(grad)
-			grad(j) = grad(j) - 0.01*J*X(i,j);
-		end
-	end
 end
-
-
-
+J = abs((1/m)*J);
+for d=1:length(theta)
+	for r=1:length(m)
+		hypothesis = sigmoid(X(r,:)*theta);
+		grad(d) = grad(d) + (hypothesis-y(r))*X(r,d);
+	end
+	grad(d) = (1/m)*grad(d);
+end
 % =============================================================
 
 
