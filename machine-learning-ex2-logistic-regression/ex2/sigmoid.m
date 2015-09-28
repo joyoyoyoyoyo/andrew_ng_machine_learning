@@ -12,12 +12,10 @@ g = zeros(size(z));
 % hypthosis - h_theta(x) = g(theta'*x)
 
 % For optimization, I should considering using an element wise power operator instead of a for loop
-if length(g) > 1
-	for i=1:length(z)
-		g(i) = 1/(1+e^(-z(i)));
+for i=1:rows(z)
+	for j=1:columns(z)
+		g(i,j) = 1/(1+e^(-z(i,j)));
 	end
-else
-	g = 1/(1+e^(-z));
 end
 % g needs to operate with vectors, scalars, or matrices
 
