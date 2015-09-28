@@ -22,15 +22,14 @@ grad = zeros(size(theta));
 for i=1:m	
 	hypothesis = sigmoid(X(i,:)*theta);
 	J = J + y(i)*log(hypothesis)+(1-y(i))*log(1-hypothesis);
+	for j=1:length(theta)
+		grad(j) = grad(j) + (hypothesis-y(i))*X(i,j);
+	end
+end
+for k=1:length(theta)
+	grad(k) = (1/m)*grad(k);
 end
 J = abs((1/m)*J);
-for d=1:length(theta)
-	for r=1:length(m)
-		hypothesis = sigmoid(X(r,:)*theta);
-		grad(d) = grad(d) + (hypothesis-y(r))*X(r,d);
-	end
-	grad(d) = (1/m)*grad(d);
-end
 % =============================================================
 
 
