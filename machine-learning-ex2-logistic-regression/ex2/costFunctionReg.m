@@ -19,20 +19,19 @@ grad = zeros(size(theta));
 
 for i=1:m
 	hypothesis = sigmoid(X(i,:)*theta);
-	J = J + y(i)*log(hypothesis)+(1-y(i))*log(1-hypothesis);
+	J = J + -y(i)*log(hypothesis)-(1-y(i))*log(1-hypothesis);
 	for j=1:length(theta)
 		grad(j) = grad(j) + (hypothesis-y(i))*X(i,j);
 	end
 end
 sumLam = 0;
 for k=1:length(theta)
-	grad(k) = (1/m)*grad(k);
+	grad(k) = (1/m)*grad(k)	+ lambda/m*grad(k);
 	if k > 1
-		grad(k) = (1/m)*grad(k)	+ lambda/m*X(i,j);
+		sumLam = sumLam + theta(k)^2;
 	end
-	sumLam = sumLam + theta(k)^2;
 end
-J = abs((1/m)*J)+(lambda/(2*m))*sumLam;
+J = abs((1/m)*J+(lambda/(2*m))*sumLam);
 
 
 
