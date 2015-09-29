@@ -26,8 +26,10 @@ for i=1:m
 end
 sumLam = 0;
 for k=1:length(theta)
-	grad(k) = (1/m)*grad(k)	+ lambda/m*grad(k);
-	if k > 1
+	if k == 1
+		grad(k) = (1/m)*grad(k);
+	else
+		grad(k) = (1/m)*grad(k) + (lambda/m)*theta(k);
 		sumLam = sumLam + theta(k)^2;
 	end
 end
