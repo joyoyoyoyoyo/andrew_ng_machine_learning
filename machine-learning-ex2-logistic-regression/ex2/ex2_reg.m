@@ -90,7 +90,12 @@ initial_theta = zeros(size(X, 2), 1);
 lambda = 1;
 
 % Set Options
+% original version
 options = optimset('GradObj', 'on', 'MaxIter', 400);
+% newer version
+%options = optimset('GradObj', 'on', 'MaxIter', 10);
+%options = optimset('GradObj', 'on', 'MaxIter', 5000, 'MaxFunEvals',5000);
+
 
 % Optimize
 [theta, J, exit_flag] = ...
