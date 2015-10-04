@@ -40,9 +40,7 @@ temp(1)=0;
 hypothesis = sigmoid(X*theta)
 J = (1/m)*sum(abs(-y(:).*log(hypothesis)-(1-y(:)).*log(1-hypothesis))) + (lambda/(2*m))*sum(temp.*temp);
 
-tempX = [ 1; X(:)];
-tempTheta = theta;
-tempTheta(1) = 0;
+grad = (1/m)*X'*(hypothesis-y(:))
 %grad(:) = (1/m)*sum((sigmoid(X(:)'*theta)-y(:)*X(:)) + ;
 
 
