@@ -44,9 +44,9 @@ X = [ones(m, 1) X];
 % 
 %     % Run fmincg to obtain the optimal theta
 %     % This function will return theta and the cost 
-classifiers = [1; 2; 3];
+
 for c=1:num_labels
-	[theta] = fmincg (@(t)(lrCostFunction(t, X, (y == classifiers(c)), lambda)),  initial_theta, options);
+	[theta] = fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)),  initial_theta, options);
 	all_theta(c,:) = theta;
 end
 %
