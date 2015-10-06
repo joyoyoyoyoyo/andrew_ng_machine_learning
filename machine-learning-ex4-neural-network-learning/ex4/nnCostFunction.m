@@ -64,7 +64,11 @@ Theta2_grad = zeros(size(Theta2));
 
 a1 = sigmoid([ones(rows(X),1), X]*Theta1');
 a2 = sigmoid([ones(rows(a1),1), a1]*Theta2');
-J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
+for i =1:m
+	J = sum(abs(-y(:)*log(a2(i,:))-(1-y(:))*log(1-a2(i,:))));
+end
+J = (1/m)*J;
+%J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
 
 
 
