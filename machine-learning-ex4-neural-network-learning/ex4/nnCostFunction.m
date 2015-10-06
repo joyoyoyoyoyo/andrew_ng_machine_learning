@@ -61,9 +61,10 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-
-
-
+% todo: add bias
+a1 = sigmoid(X*Theta1');
+a2 = sigmoid(a1*Theta2');
+J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
 
 
 
