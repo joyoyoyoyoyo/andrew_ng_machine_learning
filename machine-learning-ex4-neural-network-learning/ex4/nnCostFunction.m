@@ -62,14 +62,14 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 Y = eye(num_labels);
-Y(9,:);
 
-%a1 = sigmoid([ones(rows(X),1), X]*Theta1');
-%a2 = sigmoid([ones(rows(a1),1), a1]*Theta2');
-%for i =1:m
-%	J  = J + (-y*log(a2(i,:))-(1-y)*log(1-a2(i,:)));
-%end
-%J = (1/(m))*J;
+
+a2 = sigmoid([ones(rows(X),1), X]*Theta1');
+a3 = sigmoid([ones(rows(a2),1), a2]*Theta2');
+for i =1:m
+	J  = J + (-Y(y(i),:)'.*log(a3(i,:))-(1-Y(y(i),:)').*log(1-a3(i,:)));
+end
+J = (1/(m))*J;
 %J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
 
 
