@@ -67,7 +67,9 @@ Y = eye(num_labels);
 a2 = sigmoid([ones(rows(X),1), X]*Theta1');
 a3 = sigmoid([ones(rows(a2),1), a2]*Theta2');
 for i =1:m
-	J  = J + (-Y(y(i),:)'.*log(a3(i,:))-(1-Y(y(i),:)').*log(1-a3(i,:)));
+	a = sum(sum(-Y(y(i),:)'.*log(a3(i,:)) - (1-Y(y(i),:)').*log(1-a3(i,:))));
+	J = J + (1/num_labels)*a;
+	%J  = J + (-Y(y(i),:)'.*log(a3(i,:))-(1-Y(y(i),:)').*log(1-a3(i,:)));
 end
 J = (1/(m))*J;
 %J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
