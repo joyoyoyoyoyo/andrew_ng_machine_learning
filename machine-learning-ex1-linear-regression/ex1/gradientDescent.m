@@ -15,15 +15,21 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-	
-	for j=1:m
-			initial_theta = theta;
-			hypothesis = initial_theta(1) + initial_theta(2)*X(j,2);
-			costDeriv1 = (hypothesis-y(j));
-		    costDeriv2 = (hypothesis-y(j))*X(j,2);
-			theta(1) = initial_theta(1) - alpha*(1/m)*(costDeriv1);
-			theta(2) = initial_theta(2) - alpha*(1/m)*(costDeriv2);
-	end
+	for i=1:length(theta)
+			if i == 1
+				temp_theta = theta;
+			end
+
+			J = 0;
+			for j=1:m
+				hypothesis = X(j,:)*theta;
+				J = J + (hypothesis-y(j))*X(j,i);
+			end
+			temp_theta(i) = theta(i) - alpha*(1/m)*J;
+			if i == length(theta)
+				theta = temp_theta;
+			end
+	end 
     % ============================================================
 
     % Save the cost J in every iteration    
