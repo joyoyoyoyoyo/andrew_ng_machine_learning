@@ -62,15 +62,16 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 Y = eye(num_labels);
-
+% X - layer 1
+% a2 - layer 2
+% a3 - layer 3
 a2 = sigmoid([ones(rows(X),1), X]*Theta1');
 a3 = sigmoid([ones(rows(a2),1), a2]*Theta2');
 for i=1:m
-  for j=1:num_labels
-		J = J + abs(-Y(y(i),:)'*log(a3(i,j))-(1-Y(y(i),:)')*log(1-a3(i,j)));
-  end
+	J = J + (-Y(y(i),:)*log(a3')-(1-Y(y(i),:))*log(1-a3'));
 end
 J = J/m;
+
 %J = (1/m)*sum(-y*log(a2)-(1-y)*log(1-a2));
 
 
